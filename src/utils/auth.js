@@ -1,4 +1,4 @@
-// Mock data initialization and authentication utilities
+// Mock data
 const STORAGE_KEYS = {
   USERS: 'dental_users',
   PATIENTS: 'dental_patients',
@@ -40,7 +40,6 @@ const mockData = {
 }
 
 export const initializeMockData = () => {
-  // Initialize data only if not already present
   if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
     localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(mockData.users))
   }
@@ -58,7 +57,7 @@ export const login = (email, password) => {
   
   if (user) {
     const userSession = { ...user }
-    delete userSession.password // Don't store password in session
+    delete userSession.password 
     localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(userSession))
     return userSession
   }
@@ -74,7 +73,6 @@ export const getCurrentUser = () => {
   return user ? JSON.parse(user) : null
 }
 
-// Data access functions
 export const getPatients = () => {
   return JSON.parse(localStorage.getItem(STORAGE_KEYS.PATIENTS) || '[]')
 }
