@@ -132,27 +132,27 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-900">Appointment Management</h1>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Appointment Management</h1>
         <button
           onClick={() => setShowForm(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 sm:px-4 rounded-md text-sm font-medium transition-colors w-full sm:w-auto"
         >
           Schedule New Appointment
         </button>
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white p-3 sm:p-4 rounded-lg shadow">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
           <div className="relative">
             <input
               type="text"
-              placeholder="Search appointments by title, description, or patient name..."
+              placeholder="Search appointments..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +164,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm"
           >
             <option value="all">All Statuses</option>
             <option value="Scheduled">Scheduled</option>
@@ -176,14 +176,14 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
 
       {/* Appointment Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900">
+        <div className="fixed inset-0 modal-backdrop flex items-center justify-center p-2 sm:p-4 z-50">
+          <div className="bg-white rounded-lg shadow-xl mobile-modal max-w-2xl w-full max-h-screen overflow-y-auto">
+            <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200 sticky top-0 bg-white">
+              <h3 className="text-base sm:text-lg font-medium text-gray-900">
                 {editingIncident ? 'Edit Appointment' : 'Schedule New Appointment'}
               </h3>
             </div>
-            <form onSubmit={handleSubmit} className="px-6 py-4 space-y-4">
+            <form onSubmit={handleSubmit} className="px-4 py-3 sm:px-6 sm:py-4 space-y-3 sm:space-y-4">
               <div>
                 <label htmlFor="patientId" className="block text-sm font-medium text-gray-700">
                   Patient *
@@ -194,7 +194,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                   required
                   value={formData.patientId}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                 >
                   <option value="">Select a patient</option>
                   {patients.map(patient => (
@@ -216,7 +216,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                   required
                   value={formData.title}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                   placeholder="e.g., Routine Checkup, Root Canal"
                 />
               </div>
@@ -232,7 +232,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                   rows={3}
                   value={formData.description}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                   placeholder="Detailed description of the appointment"
                 />
               </div>
@@ -248,11 +248,11 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                   required
                   value={formData.appointmentDate}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label htmlFor="cost" className="block text-sm font-medium text-gray-700">
                     Cost ($)
@@ -265,7 +265,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                     step="0.01"
                     value={formData.cost}
                     onChange={handleInputChange}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                   />
                 </div>
 
@@ -278,7 +278,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                     name="status"
                     value={formData.status}
                     onChange={handleInputChange}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                   >
                     <option value="Scheduled">Scheduled</option>
                     <option value="Completed">Completed</option>
@@ -297,7 +297,7 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                   rows={2}
                   value={formData.comments}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm"
                   placeholder="Additional notes or comments"
                 />
               </div>
@@ -319,12 +319,12 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                     <p className="text-sm text-gray-700 mb-2">Attached files:</p>
                     <div className="space-y-1">
                       {formData.files.map((file, index) => (
-                        <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded">
-                          <span className="text-sm text-gray-700">📎 {file.name}</span>
+                        <div key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded text-sm">
+                          <span className="text-gray-700 break-all">📎 {file.name}</span>
                           <button
                             type="button"
                             onClick={() => removeFile(index)}
-                            className="text-red-600 hover:text-red-800 text-sm"
+                            className="text-red-600 hover:text-red-800 text-sm ml-2 flex-shrink-0"
                           >
                             Remove
                           </button>
@@ -335,17 +335,17 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                 )}
               </div>
 
-              <div className="flex justify-end space-x-3 pt-4">
+              <div className="flex flex-col sm:flex-row sm:justify-end space-y-2 sm:space-y-0 sm:space-x-3 pt-4 sticky bottom-0 bg-white border-t border-gray-200 -mx-4 px-4 sm:-mx-6 sm:px-6 -mb-3 pb-3 sm:-mb-4 sm:pb-4">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 border border-transparent rounded-md text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+                  className="w-full sm:w-auto px-4 py-2 bg-blue-600 border border-transparent rounded-md text-sm font-medium text-white hover:bg-blue-700 transition-colors"
                 >
                   {editingIncident ? 'Update' : 'Schedule'} Appointment
                 </button>
@@ -357,14 +357,14 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
 
       {/* Appointments List */}
       <div className="bg-white shadow overflow-hidden sm:rounded-md">
-        <div className="px-4 py-5 sm:px-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+        <div className="px-3 py-4 sm:px-4 sm:py-5 lg:px-6">
+          <h3 className="text-base sm:text-lg leading-6 font-medium text-gray-900">
             Appointments ({filteredIncidents.length})
           </h3>
         </div>
         <ul className="divide-y divide-gray-200">
           {filteredIncidents.length === 0 ? (
-            <li className="px-4 py-4">
+            <li className="px-3 py-4 sm:px-4">
               <p className="text-sm text-gray-500">
                 {searchTerm || statusFilter !== 'all' 
                   ? 'No appointments found matching your criteria.' 
@@ -375,15 +375,15 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
             filteredIncidents.map((incident) => {
               const patient = patients.find(p => p.id === incident.patientId)
               return (
-                <li key={incident.id} className="px-4 py-4 hover:bg-gray-50 transition-colors">
+                <li key={incident.id} className="px-3 py-4 sm:px-4 hover:bg-gray-50 transition-colors">
                   <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-medium text-gray-900">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <h4 className="text-sm font-medium text-gray-900 truncate">
                           {incident.title}
                         </h4>
                         <div className="flex items-center space-x-2">
-                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(incident.status)}`}>
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(incident.status)} flex-shrink-0`}>
                             {incident.status}
                           </span>
                           <button
@@ -394,19 +394,19 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                           </button>
                         </div>
                       </div>
-                      <p className="mt-1 text-sm text-gray-600">
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600">
                         Patient: {patient?.name || 'Unknown'}
                       </p>
-                      <p className="mt-1 text-sm text-gray-600">
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600">
                         {incident.description}
                       </p>
                       {incident.comments && (
-                        <p className="mt-1 text-sm text-gray-500 italic">
+                        <p className="mt-1 text-xs sm:text-sm text-gray-500 italic">
                           Notes: {incident.comments}
                         </p>
                       )}
-                      <div className="mt-2 flex items-center justify-between">
-                        <p className="text-sm text-gray-500">
+                      <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
+                        <p className="text-xs sm:text-sm text-gray-500">
                           {formatDate(incident.appointmentDate)}
                         </p>
                         <p className="text-sm font-medium text-gray-900">
@@ -416,11 +416,11 @@ const IncidentManagement = ({ incidents, patients, onAddIncident, onUpdateIncide
                       {incident.files && incident.files.length > 0 && (
                         <div className="mt-2">
                           <p className="text-xs text-gray-500 mb-1">Attachments:</p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1 sm:gap-2">
                             {incident.files.map((file, index) => (
                               <span
                                 key={index}
-                                className="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-700"
+                                className="inline-flex items-center px-2 py-1 rounded text-xs bg-gray-100 text-gray-700 break-all"
                               >
                                 📎 {file.name}
                               </span>
