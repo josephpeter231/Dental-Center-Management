@@ -90,14 +90,14 @@ const AdminDashboard = ({ user, onLogout }) => {
                 <li key={item.id} className="flex-shrink-0 sm:flex-shrink">
                   <button
                     onClick={() => setActiveTab(item.id)}
-                    className={`w-full flex items-center px-2 py-1.5 sm:px-3 sm:py-2 text-left rounded-md transition-colors whitespace-nowrap text-xs sm:text-sm ${
+                    className={`w-full flex flex-col sm:flex-row items-center px-2 py-1.5 sm:px-3 sm:py-2 text-center sm:text-left rounded-md transition-colors whitespace-nowrap text-xs sm:text-sm ${
                       activeTab === item.id
                         ? 'bg-blue-100 text-blue-700 border-r-0 sm:border-r-2 border-blue-600'
                         : 'text-gray-700 hover:bg-gray-100'
                     }`}
                   >
-                    <span className="mr-1 sm:mr-3 text-sm sm:text-lg">{item.icon}</span>
-                    <span className="hidden xs:inline">{item.label}</span>
+                    <span className="mb-1 sm:mb-0 sm:mr-3 text-base sm:text-lg">{item.icon}</span>
+                    <span className="text-xs sm:text-sm">{item.label}</span>
                   </button>
                 </li>
               ))}
